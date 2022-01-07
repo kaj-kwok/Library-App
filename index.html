@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="container-wrapper">
-       <div class="header"><button id="add-book">Add Book</button><h1>The Library</h1></div>
+       <div class="header"><button data-modal-target="#modal" id="add-book">Add Book</button><h1>The Library</h1></div>
         <div id="form-container">
             
                 <div id="catalog-wrapper">
@@ -33,25 +33,25 @@
     </div>     
 
 <!-- !------- -->
-<div class="bg-modal">
-    <div class="modal-content">
-        <div class="form">
-            <div class="input-header"><button class="close-btn">X</button></div>
+
+<div class="modal" id="modal">
+        <form class="form">
+                <div class="input-header"><button data-close-button class="close-btn">&times;</button></div>
                 <label for="title">Title:</label>
                 <input type="text" placeholder="Enter Title" name="title">
                 <label for="Author">Author:</label>
-                <input type="text" placeholder="Enter Author's Name" name="Author">
+                <input type="text" placeholder="Enter Author's Name" name="author">
                 <label for="Pages">No. Pages:</label>
-                <input type="number" placeholder="Enter Number of Pages" name="Pages">
+                <input type="number" min="1" placeholder="Enter Number of Pages" name="pages">
                 <label for="status-y">Status:</label>
                 <div class="statusRead">
-                <input type="radio" placeholder=" " name="status">Read</input>
-                <input type="radio" placeholder=" " name="status">Unread</input>
+                <input type="radio" placeholder=" " name="status" value="true">Read</input>
+                <input type="radio" placeholder=" " name="status" value="false">Unread</input>
                 </div>
                 <input type="submit" placeholder=" " name="submit">
-         </div>
+            </form>
     </div>
-</div>
+    <div id="overlay"></div>
     </body>
     <script src="script.js" defer></script>
 </body>
