@@ -14,18 +14,18 @@
             
                 <div id="catalog-wrapper">
                     <table>
-                    <tr>
+                    <thead>
+                        <tr>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Pages</th>
-                        <th>Status</th>
+                        <th>Finished</th>
+                        <th></th>
                     </tr>
-                    <tr>
-                        <td>The Hobbit</td>
-                        <td>J.R.R. Tolkien</td>
-                        <td>229</td>
-                        <td>Read</td>
-                    </tr>
+                </thead>
+                <tbody id="catalog">
+
+                </tbody>
                     </table>
                 </div>
             
@@ -45,8 +45,8 @@
                 <input type="number" min="1" placeholder="Enter Number of Pages" name="pages">
                 <label for="status-y">Status:</label>
                 <div class="statusRead">
-                <input type="radio" placeholder=" " name="status" value="true">Read</input>
-                <input type="radio" placeholder=" " name="status" value="false">Unread</input>
+                <input type="radio" placeholder=" " name="status" value=true>Read</input>
+                <input type="radio" placeholder=" " name="status" value=false>Unread</input>
                 </div>
                 <input type="submit" placeholder=" " name="submit">
             </form>

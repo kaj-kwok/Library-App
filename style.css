@@ -24,17 +24,31 @@ h1 {
 table {
     width: 85%;
     margin: 0 auto;
-}
-
-table, th, td {
-    border: 1px solid black;
+    box-shadow: 0 5px 10px #e2e8f0;
 }
 
 table th {
     text-align: left;
     font-weight: bolder;
     font-size: larger;
+    box-shadow: 0 5px 10px #e2e8f0;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    letter-spacing: 0.1rem;
+    /* border-bottom: 2px solid black;
+    border-left: 2px solid black; */
 }
+
+.bookRow {
+    font-weight: bolder;
+
+}
+
+tbody td {
+    margin: 1rem;
+    padding: 1rem;
+}
+
 
 /* for modal */
 #overlay {
@@ -74,6 +88,7 @@ table th {
     height: 300px;
     padding: 20px;
     width: 250px;
+    transition: 200ms ease-in;
 }
 
 .modal input, .modal label {
