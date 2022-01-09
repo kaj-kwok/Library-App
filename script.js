@@ -40,14 +40,15 @@ let sampleLibrary = [
 
 //capture input
 const formInp = document.querySelector('.form')
-formInp.addEventListener('submit', (e) => {
+const subBtn = document.querySelector('#submitBtn')
+subBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const title = formInp.elements.namedItem('title').value
     const author = formInp.elements.namedItem('author').value
     const pages = formInp.elements.namedItem('pages').value
     const read = formInp.elements.namedItem('status').value
     addBooktoLibrary(title, author, pages, read);
-    closeModal()
+    closeModal(modal)
     formInp.reset()
     retrieveBook()
 })
@@ -116,8 +117,6 @@ for (let i = 0; i < myLibrary.length; i++){
     deleteBtn.innerHTML = "&times;";
     deleteBtn.addEventListener('click', (event) => {
         let index = event.target.parentNode.parentNode.rowIndex-1
-        console.log(index);
-        console.log(typeof(index))
         myLibrary.splice(index, 1);
         localStorage.setItem('books', JSON.stringify(myLibrary))
         retrieveBook()
@@ -167,13 +166,13 @@ closeModalButton.addEventListener('click', () => {
     closeModal(modal)
 })
 
-function openModal(model) {
+function openModal(modal) {
     if (modal == null) return
     modal.classList.add('active')
     overlay.classList.add('active')
 }
 
-function closeModal(model) {
+function closeModal(modal) {
     if (modal == null) return
     modal.classList.remove('active')
     overlay.classList.remove('active')
