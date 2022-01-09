@@ -5,8 +5,12 @@ class book {
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    }
+    toggleRead() {
+        this.isRead = !this.isRead
 }
 }
+
 
 function addBooktoLibrary(title, author, pages, read) {
     addBook = new book(title, author, pages, read) 
@@ -22,14 +26,14 @@ let sampleLibrary = [
         title: "The Lord of the Rings",
         author: "J.R.R. Tolkien",
         pages: 229,
-        isRead: true,
+        isRead: "true",
     
     },
     {
         title: "The Hobbit",
         author: "J.R.R. Tolkien",
         pages: 100,
-        isRead: false,
+        isRead: "false",
     
     },
 ];
@@ -59,45 +63,79 @@ for (let i = 0; i < myLibrary.length; i++){
     authorTd = document.createElement("td")
     pagesTd = document.createElement("td")
     isReadTD = document.createElement("td")
+    isReadTD.setAttribute("class", "isRead")
+    deleteEl = document.createElement("td")
     titleTd.textContent = myLibrary[i].title
     authorTd.textContent = myLibrary[i].author
     pagesTd.textContent = myLibrary[i].pages
-    isReadTD.textContent = myLibrary[i].isRead
+    readLabel = document.createElement("label")
+    readToggle = document.createElement("input")
+    readToggle.setAttribute("type", "checkbox")
+    readToggle.setAttribute("class", "readTg")
+    readSpn = document.createElement("span")
+    if (myLibrary[i].isRead == "true" || myLibrary[i].isRead == true) {
+        isReadTD.textContent = 'Finished'
+        readToggle.checked = true;
+    }
+    if (myLibrary[i].isRead == "false" || myLibrary[i].isRead == false){
+        isReadTD.textContent = 'Incomplete'
+        readToggle.checked = false
+    }
+    readToggle.addEventListener('change', (event) =>
+    {const { target } = event;
+    const tr = target.parentNode.parentNode.parentNode.rowIndex-1
+        if(readToggle.checked){
+        myLibrary[tr].isRead = true;
+    }
+        else {
+        myLibrary[tr].isRead = false;
+    }
+        localStorage.setItem('books', JSON.stringify(myLibrary))
+        tbody.innerHTML = ' ' 
+        myLibrary = []
+        myLibrary = JSON.parse(localStorage.getItem('books'))
+        displayBookCatalog(item)
+        
+    })
+
     bookCatalog.appendChild(bookRow)
     bookRow.appendChild(titleTd)
     bookRow.appendChild(authorTd)
     bookRow.appendChild(pagesTd)
     bookRow.appendChild(isReadTD)
+    bookRow.appendChild(deleteEl)
     //create delete button
+    
     deleteBtn = document.createElement("button")
     deleteBtn.setAttribute('class', 'dl-Btn')
-    deleteBtn.innerHTML = "&times;"
-    bookRow.appendChild(deleteBtn)
-    deleteBtn.addEventListener('click', (e) => {
+    deleteBtn.innerHTML = "&times;";
+    deleteBtn.addEventListener('click', () => {
         myLibrary.splice(myLibrary.indexOf(item), 1)
         retrieveBook()
     })
-}
-}
-//delete function
-// let deleteBtn = document.getElementsByClassName('dl-btn')
 
+    // create toggle for read
 
+    deleteEl.appendChild(deleteBtn)
+    //
+    isReadTD.appendChild(readLabel)
+    readLabel.appendChild(readToggle)
+    readLabel.appendChild(readSpn)
+}}
 
 
 //retrieve books
 function retrieveBook() {
 tbody = document.querySelector('#catalog')
 tbody.innerHTML = ' ' 
-if (JSON.parse(localStorage.getItem('books')) == ''){
-    console.log('yes')
+if (JSON.parse(localStorage.getItem('books')) == null){ // if library is blank , fill with dummy 
     myLibrary = sampleLibrary
 }
 else {
-    console.log('other')
 bookLibrary = JSON.parse(localStorage.getItem('books'))
 myLibrary = []
 myLibrary = bookLibrary
+myLibrary.proto
 }
 displayBookCatalog()
 }
