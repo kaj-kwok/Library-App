@@ -84,18 +84,23 @@ for (let i = 0; i < myLibrary.length; i++){
     readToggle.addEventListener('change', (event) =>
     {const { target } = event;
     const tr = target.parentNode.parentNode.parentNode.rowIndex-1
-        if(readToggle.checked){
+        if(event.target.checked){
         myLibrary[tr].isRead = true;
-    }
+        localStorage.setItem('books', JSON.stringify(myLibrary))
+        tbody.innerHTML = ' ' 
+        myLibrary = []
+        myLibrary = JSON.parse(localStorage.getItem('books'))
+        displayBookCatalog(item)
+}
         else {
         myLibrary[tr].isRead = false;
-    }
         localStorage.setItem('books', JSON.stringify(myLibrary))
         tbody.innerHTML = ' ' 
         myLibrary = []
         myLibrary = JSON.parse(localStorage.getItem('books'))
         displayBookCatalog(item)
         
+        }
     })
 
     bookCatalog.appendChild(bookRow)
