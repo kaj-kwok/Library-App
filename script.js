@@ -81,8 +81,8 @@ for (let i = 0; i < myLibrary.length; i++){
         isReadTD.textContent = 'Incomplete'
         readToggle.checked = false
     }
-    readToggle.addEventListener('change', (event) =>
-    {const { target } = event;
+    readToggle.addEventListener('change', (event) => {
+    const {target} = event;
     const tr = target.parentNode.parentNode.parentNode.rowIndex-1
         if(event.target.checked){
         myLibrary[tr].isRead = true;
@@ -114,9 +114,14 @@ for (let i = 0; i < myLibrary.length; i++){
     deleteBtn = document.createElement("button")
     deleteBtn.setAttribute('class', 'dl-Btn')
     deleteBtn.innerHTML = "&times;";
-    deleteBtn.addEventListener('click', () => {
-        myLibrary.splice(myLibrary.indexOf(item), 1)
+    deleteBtn.addEventListener('click', (event) => {
+        let index = event.target.parentNode.parentNode.rowIndex-1
+        console.log(index);
+        console.log(typeof(index))
+        myLibrary.splice(index, 1);
+        localStorage.setItem('books', JSON.stringify(myLibrary))
         retrieveBook()
+    
     })
 
     // create toggle for read
